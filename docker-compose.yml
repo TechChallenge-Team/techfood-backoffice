@@ -1,0 +1,23 @@
+services:
+  rabbitmq:
+    # Use the official RabbitMQ image with the Management Plugin enabled
+    image: rabbitmq:3-management
+    
+    # Give the container a recognizable name
+    container_name: rabbitmq
+    
+    # Map ports from the container to the host machine
+    ports:
+      # 1. Standard AMQP port (for applications to connect to)
+      - "5672:5672"
+      
+      # 2. Management UI port (access via browser at http://localhost:15672)
+      - "15672:15672"
+      
+    # Set default credentials (recommended for local development only)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      
+    # Restart policy ensures the container restarts automatically if it fails
+    restart: always

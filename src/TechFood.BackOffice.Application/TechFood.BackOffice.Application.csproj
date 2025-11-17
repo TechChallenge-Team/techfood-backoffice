@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Common\AutoMapper\**" />
+    <EmbeddedResource Remove="Common\AutoMapper\**" />
+    <None Remove="Common\AutoMapper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.1.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.1.2" />
+    <PackageReference Include="TechFood.Shared.Application" Version="0.2.4-rc" />
+    <PackageReference Include="TechFood.Shared.Domain" Version="0.2.4-rc" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\TechFood.BackOffice.Domain\TechFood.BackOffice.Domain.csproj" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Common\Resources\Exceptions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Exceptions.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Common\Resources\Validators.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Validators.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Common\Resources\Exceptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Exceptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Common\Resources\Validators.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Validators.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Authentication\Events\" />
+    <Folder Include="Authentication\Queries\" />
+    <Folder Include="Customers\Events\" />
+    <Folder Include="Products\Commands\" />
+    <Folder Include="Products\Dto\" />
+    <Folder Include="Products\Events\" />
+    <Folder Include="Menu\Commands\" />
+    <Folder Include="Menu\Events\" />
+    <Folder Include="Categories\Events\" />
+  </ItemGroup>
+
+</Project>

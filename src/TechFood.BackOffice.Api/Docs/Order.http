@@ -1,0 +1,23 @@
+@rootUrl=http://localhost:49752/v1
+
+### Create Order
+POST {{rootUrl}}/orders/
+Content-Type: application/json
+
+{
+    "customerId": "25b58f54-63bc-42da-8cf6-8162097e72c8",
+    "items": [
+        {
+            "productId": "090d8eb0-f514-4248-8512-cf0d61a262f0",
+            "quantity": 2
+        },
+        {
+            "productId": "55f32e65-c82f-4a10-981c-cdb7b0d2715a",
+            "quantity": 1
+        }
+    ]
+}
+
+### Finish Order
+PATCH {{rootUrl}}/orders/0c252e6f-8b4c-47ec-be2b-ab5525d80d29/finish
+
