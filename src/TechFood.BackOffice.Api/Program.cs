@@ -30,6 +30,9 @@ var app = builder.Build();
     {
         var dataContext = scope.ServiceProvider.GetRequiredService<BackOfficeContext>();
         dataContext.Database.Migrate();
+        
+        await TechFood.Infra.DependencyInjection.InitializeDynamoDbAsync(scope.ServiceProvider);
+
     }
 
     app.UsePathBase("/api");

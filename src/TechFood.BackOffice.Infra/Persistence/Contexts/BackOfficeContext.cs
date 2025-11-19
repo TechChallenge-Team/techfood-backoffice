@@ -15,8 +15,6 @@ public class BackOfficeContext(DbContextOptions<BackOfficeContext> options) : Te
 {
     public DbSet<Category> Categories { get; set; } = null!;
 
-    public DbSet<Customer> Customers { get; set; } = null!;
-
     public DbSet<Product> Products { get; set; } = null!;
 
     public DbSet<User> Users { get; set; } = null!;

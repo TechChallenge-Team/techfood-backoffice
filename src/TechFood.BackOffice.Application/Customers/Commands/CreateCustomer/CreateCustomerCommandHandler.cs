@@ -16,7 +16,7 @@ public class CreateCustomerCommandHandler(ICustomerRepository repo) : IRequestHa
     {
         var document = new Document(DocumentType.CPF, request.CPF);
 
-        var cpfExists = await repo.GetByDocument(document.Type, document.Value);
+        var cpfExists = await repo.GetByDocumentAsync(document.Type, document.Value);
         if (cpfExists != null)
         {
             throw new ApplicationException(Exceptions.Customer_CpfAlreadyExists);

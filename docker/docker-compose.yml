@@ -1,0 +1,44 @@
+services:
+  dynamodb:
+    # Use the official Amazon DynamoDB Local image
+    image: amazon/dynamodb-local:latest
+
+    # Give the container a recognizable name
+    container_name: dynamodb-local
+
+    # Map ports from the container to the host machine
+    ports:
+      # DynamoDB Local default port
+      - "8000:8000"
+
+    # Command to start DynamoDB Local with in-memory storage and shared database
+    command: ["-jar", "DynamoDBLocal.jar", "-inMemory", "-sharedDb"]
+
+    # Restart policy ensures the container restarts automatically if it fails
+    restart: always
+
+  dynamodb-admin:
+    # Use DynamoDB Admin web interface
+    image: aaronshaf/dynamodb-admin:latest
+
+    # Give the container a recognizable name
+    container_name: dynamodb-admin
+
+    # Map ports from the container to the host machine
+    ports:
+      # DynamoDB Admin web interface port
+      - "8001:8001"
+
+    # Environment variables to connect to DynamoDB Local
+    environment:
+      DYNAMO_ENDPOINT: http://dynamodb:8000
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: AccessKey
+      AWS_SECRET_ACCESS_KEY: SecretKey
+
+    # Depends on DynamoDB service
+    depends_on:
+      - dynamodb
+
+    # Restart policy ensures the container restarts automatically if it fails
+    restart: always

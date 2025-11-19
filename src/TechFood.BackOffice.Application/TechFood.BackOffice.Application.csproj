@@ -7,8 +7,11 @@
 
   <ItemGroup>
     <Compile Remove="Common\AutoMapper\**" />
+    <Compile Remove="Customers\Events\**" />
     <EmbeddedResource Remove="Common\AutoMapper\**" />
+    <EmbeddedResource Remove="Customers\Events\**" />
     <None Remove="Common\AutoMapper\**" />
+    <None Remove="Customers\Events\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,7 +56,6 @@
   <ItemGroup>
     <Folder Include="Authentication\Events\" />
     <Folder Include="Authentication\Queries\" />
-    <Folder Include="Customers\Events\" />
     <Folder Include="Products\Commands\" />
     <Folder Include="Products\Dto\" />
     <Folder Include="Products\Events\" />
