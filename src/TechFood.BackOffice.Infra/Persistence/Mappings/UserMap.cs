@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Domain.Entities;
 using TechFood.Infra.Persistence.ValueObjectMappings;
 
@@ -9,7 +10,9 @@ public class UserMap : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.ToTable("User");
+        builder.ToCollection("users");
+
+         builder.HasKey(u => u.Id);
 
         builder.OwnsOne(u => u.Name, name => name.MapName())
             .Navigation(u => u.Name)

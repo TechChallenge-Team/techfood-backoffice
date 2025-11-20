@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Application.Categories.Dto;
 using TechFood.BackOffice.Application.Categories.Queries;
 using TechFood.BackOffice.Application.Common.Services.Interfaces;
@@ -17,29 +18,41 @@ internal class CategoryQueryProvider(
 {
     public async Task<List<CategoryDto>> GetAllAsync()
     {
-        return await techFoodContext.Categories
-            .AsNoTracking()
+        var categories = await techFoodContext.Categories
             .OrderBy(category => category.SortOrder)
             .Select(category => new CategoryDto
             {
                 Id = category.Id,
                 Name = category.Name,
-                ImageUrl = imageUrl.BuildFilePath(nameof(Category).ToLower(), category.ImageFileName)
+                ImageUrl = category.ImageFileName 
             })
             .ToListAsync();
+
+        foreach (var category in categories)
+        {
+            category.ImageUrl = imageUrl.BuildFilePath(nameof(Category).ToLower(), category.ImageUrl);
+        }
+
+        return categories;
     }
 
     public async Task<CategoryDto?> GetByIdAsync(Guid id)
     {
-        return await techFoodContext.Categories
-            .AsNoTracking()
+        var category = await techFoodContext.Categories
             .Where(x => x.Id == id)
             .Select(category => new CategoryDto
             {
                 Id = category.Id,
                 Name = category.Name,
-                ImageUrl = imageUrl.BuildFilePath(nameof(Category).ToLower(), category.ImageFileName)
+                ImageUrl = category.ImageFileName
             })
             .FirstOrDefaultAsync();
+
+        if (category != null)
+        {
+            category.ImageUrl = imageUrl.BuildFilePath(nameof(Category).ToLower(), category.ImageUrl);
+        }
+
+        return category;
     }
 }

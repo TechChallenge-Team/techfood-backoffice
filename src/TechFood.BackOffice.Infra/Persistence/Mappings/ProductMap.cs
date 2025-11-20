@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Domain.Entities;
 
 namespace TechFood.Infra.Persistence.Mappings;
@@ -8,7 +9,7 @@ public class ProductMap : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.ToTable("Product");
+        builder.ToCollection("products");
 
         builder.Property(a => a.Name)
             .HasMaxLength(255)

@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using TechFood.BackOffice.Application;
 using TechFood.Infra;
@@ -25,14 +24,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
-    //Run migrations
     using (var scope = app.Services.CreateScope())
     {
         var dataContext = scope.ServiceProvider.GetRequiredService<BackOfficeContext>();
-        dataContext.Database.Migrate();
-        
-        await TechFood.Infra.DependencyInjection.InitializeDynamoDbAsync(scope.ServiceProvider);
-
+        await dataContext.SeedDataAsync();
     }
 
     app.UsePathBase("/api");

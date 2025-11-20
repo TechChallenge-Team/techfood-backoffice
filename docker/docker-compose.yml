@@ -1,44 +1,54 @@
 services:
-  dynamodb:
-    # Use the official Amazon DynamoDB Local image
-    image: amazon/dynamodb-local:latest
+  mongodb:
+    # Use the official MongoDB image
+    image: mongo:7.0
 
     # Give the container a recognizable name
-    container_name: dynamodb-local
+    container_name: mongodb-local
 
     # Map ports from the container to the host machine
     ports:
-      # DynamoDB Local default port
-      - "8000:8000"
+      # MongoDB default port
+      - "27017:27017"
 
-    # Command to start DynamoDB Local with in-memory storage and shared database
-    command: ["-jar", "DynamoDBLocal.jar", "-inMemory", "-sharedDb"]
-
-    # Restart policy ensures the container restarts automatically if it fails
-    restart: always
-
-  dynamodb-admin:
-    # Use DynamoDB Admin web interface
-    image: aaronshaf/dynamodb-admin:latest
-
-    # Give the container a recognizable name
-    container_name: dynamodb-admin
-
-    # Map ports from the container to the host machine
-    ports:
-      # DynamoDB Admin web interface port
-      - "8001:8001"
-
-    # Environment variables to connect to DynamoDB Local
+    # Environment variables for MongoDB
     environment:
-      DYNAMO_ENDPOINT: http://dynamodb:8000
-      AWS_REGION: us-east-1
-      AWS_ACCESS_KEY_ID: AccessKey
-      AWS_SECRET_ACCESS_KEY: SecretKey
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: techfood.backoffice
 
-    # Depends on DynamoDB service
-    depends_on:
-      - dynamodb
+    # Volume for data persistence
+    volumes:
+      - mongodb_data:/data/db
 
     # Restart policy ensures the container restarts automatically if it fails
     restart: always
+
+  mongo-express:
+    # Use MongoDB web admin interface
+    image: mongo-express:latest
+
+    # Give the container a recognizable name
+    container_name: mongo-express
+
+    # Map ports from the container to the host machine
+    ports:
+      # Mongo Express web interface port
+      - "8081:8081"
+
+    # Environment variables to connect to MongoDB
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongodb:27017/
+      ME_CONFIG_BASICAUTH: false
+
+    # Depends on MongoDB service
+    depends_on:
+      - mongodb
+
+    # Restart policy ensures the container restarts automatically if it fails
+    restart: always
+
+volumes:
+  mongodb_data:

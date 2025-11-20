@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Domain.Entities;
 using TechFood.BackOffice.Domain.Repositories;
 using TechFood.Infra.Persistence.Contexts;

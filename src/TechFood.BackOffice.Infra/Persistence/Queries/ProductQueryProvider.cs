@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Application.Common.Services.Interfaces;
 using TechFood.BackOffice.Application.Products.Dto;
 using TechFood.BackOffice.Application.Products.Queries;
@@ -15,32 +16,56 @@ internal class ProductQueryProvider(BackOfficeContext techFoodContext, IImageUrl
 {
     public async Task<List<ProductDto>> GetAllAsync()
     {
-        return await techFoodContext.Products
-            .AsNoTracking()
-            .Select(product => new ProductDto(
+        var productsData = await techFoodContext.Products
+            .Select(product => new
+            {
                 product.Id,
                 product.Name,
                 product.Description,
                 product.CategoryId,
                 product.OutOfStock,
-                imageUrl.BuildFilePath(nameof(Product).ToLower(), product.ImageFileName),
-                product.Price))
+                product.ImageFileName,
+                product.Price
+            })
             .ToListAsync();
+
+        return productsData.Select(product => new ProductDto(
+            product.Id,
+            product.Name,
+            product.Description,
+            product.CategoryId,
+            product.OutOfStock,
+            imageUrl.BuildFilePath(nameof(Product).ToLower(), product.ImageFileName),
+            product.Price))
+            .ToList();
     }
 
-    public Task<ProductDto?> GetByIdAsync(Guid id)
+    public async Task<ProductDto?> GetByIdAsync(Guid id)
     {
-        return techFoodContext.Products
-            .AsNoTracking()
+        var productData = await techFoodContext.Products
             .Where(product => product.Id == id)
-            .Select(product => new ProductDto(
+            .Select(product => new
+            {
                 product.Id,
                 product.Name,
                 product.Description,
                 product.CategoryId,
                 product.OutOfStock,
-                imageUrl.BuildFilePath(nameof(Product).ToLower(), product.ImageFileName),
-                product.Price))
+                product.ImageFileName,
+                product.Price
+            })
             .FirstOrDefaultAsync();
+
+        if (productData == null)
+            return null;
+
+        return new ProductDto(
+            productData.Id,
+            productData.Name,
+            productData.Description,
+            productData.CategoryId,
+            productData.OutOfStock,
+            imageUrl.BuildFilePath(nameof(Product).ToLower(), productData.ImageFileName),
+            productData.Price);
     }
 }
