@@ -7,6 +7,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     env:
       COVERAGE_PATH: "./TestResults/*/coverage.opencover.xml"
       COVERAGE_EXCLUSIONS: "**/Program.cs,**/DependencyInjection.cs,**/RequestPipeline.cs,**/Resources/*.cs,**/Migrations/**/*.cs,**/Persistence/Contexts/**/*.cs,**/Persistence/Mappings/**/*.cs,**/Persistence/ValueObjectMappings/**/*.cs"
@@ -72,7 +75,7 @@ jobs:
 
       - name: Add GitHub Packages source
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           if ! dotnet nuget list source | grep -q "github"; then
             dotnet nuget add source --username ${{ github.actor }} --password ${{ env.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/TechChallenge-Team/index.json"
