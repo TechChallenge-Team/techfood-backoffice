@@ -74,10 +74,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Remove existing source if it exists
-          dotnet nuget remove source github 2>/dev/null || true
-          # Add the GitHub Packages source
-          dotnet nuget add source --username ${{ github.actor }} --password ${{ env.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/TechChallenge-Team/index.json"
+          # Check if GitHub source already exists before adding
+          if ! dotnet nuget list source | grep -q "github \[Enabled\]"; then
+            echo "Adding GitHub Packages source..."
+            dotnet nuget add source --username ${{ github.actor }} --password ${{ env.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/TechChallenge-Team/index.json"
+          else
+            echo "GitHub Packages source already exists, skipping..."
+          fi
 
       - name: Restore dependencies
         run: dotnet restore
