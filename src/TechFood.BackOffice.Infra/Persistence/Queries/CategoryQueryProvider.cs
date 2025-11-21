@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Application.Categories.Dto;
 using TechFood.BackOffice.Application.Categories.Queries;
 using TechFood.BackOffice.Application.Common.Services.Interfaces;
