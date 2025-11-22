@@ -1,8 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TechFood.BackOffice.Domain.Entities;
-using TechFood.Shared.Domain.Repository;
 
 namespace TechFood.BackOffice.Domain.Repositories;
 
-public interface ICategoryRepository : IRepository<Category>
+public interface ICategoryRepository
 {
+    Task<Category?> GetByIdAsync(Guid id);
+
+    Task<IEnumerable<Category>> GetAllAsync();
+
+    Task<Guid> AddAsync(Category entity);
+
+    Task DeleteAsync(Category entity);
 }

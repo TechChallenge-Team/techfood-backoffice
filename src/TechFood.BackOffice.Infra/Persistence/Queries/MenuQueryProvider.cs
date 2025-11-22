@@ -5,9 +5,9 @@ using TechFood.BackOffice.Application.Common.Services.Interfaces;
 using TechFood.BackOffice.Application.Menu.Dto;
 using TechFood.BackOffice.Application.Menu.Queries;
 using TechFood.BackOffice.Domain.Entities;
-using TechFood.Infra.Persistence.Contexts;
+using TechFood.BackOffice.Infra.Persistence.Contexts;
 
-namespace TechFood.Infra.Persistence.Queries;
+namespace TechFood.BackOffice.Infra.Persistence.Queries;
 
 internal class MenuQueryProvider(BackOfficeContext techFoodContext, IImageUrlResolver imageUrl) : IMenuQueryProvider
 {

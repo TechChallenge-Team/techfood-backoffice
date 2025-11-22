@@ -12,12 +12,14 @@
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="3.5.1" />
     <PackageReference Include="MongoDB.EntityFrameworkCore" Version="9.0.3" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
-    <PackageReference Include="TechFood.Shared.Domain" Version="0.2.4-rc" />
-    <PackageReference Include="TechFood.Shared.Infra" Version="0.2.4-rc" />
-    <PackageReference Include="TechFood.Shared.Presentation" Version="0.2.4-rc" />
+    <PackageReference Include="TechFood.Shared.Infra" Version="0.2.5-rc" />
   </ItemGroup>
   
+  <ItemGroup>
+    <InternalsVisibleTo Include="TechFood.BackOffice.Application.Tests" />
+    <InternalsVisibleTo Include="TechFood.BackOffice.Integration.Tests" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\TechFood.BackOffice.Application\TechFood.BackOffice.Application.csproj" />
     <ProjectReference Include="..\TechFood.BackOffice.Domain\TechFood.BackOffice.Domain.csproj" />

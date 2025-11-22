@@ -1,14 +1,12 @@
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Domain.Entities;
 using TechFood.BackOffice.Domain.Enums;
 using TechFood.BackOffice.Domain.Repositories;
-using TechFood.Infra.Persistence.Contexts;
+using TechFood.BackOffice.Infra.Persistence.Contexts;
 
-namespace TechFood.Infra.Persistence.Repositories
+namespace TechFood.BackOffice.Infra.Persistence.Repositories
 {
     internal class CustomerRepository : ICustomerRepository
     {

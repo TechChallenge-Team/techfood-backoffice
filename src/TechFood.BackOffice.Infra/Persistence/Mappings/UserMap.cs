@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Domain.Entities;
-using TechFood.Infra.Persistence.ValueObjectMappings;
+using TechFood.BackOffice.Infra.Persistence.ValueObjectMappings;
 
-namespace TechFood.Infra.Persistence.Mappings;
+namespace TechFood.BackOffice.Infra.Persistence.Mappings;
 
 public class UserMap : IEntityTypeConfiguration<User>
 {

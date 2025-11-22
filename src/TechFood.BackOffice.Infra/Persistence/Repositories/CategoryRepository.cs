@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TechFood.BackOffice.Domain.Entities;
 using TechFood.BackOffice.Domain.Repositories;
-using TechFood.Infra.Persistence.Contexts;
+using TechFood.BackOffice.Infra.Persistence.Contexts;
 
-namespace TechFood.Infra.Persistence.Repositories;
+namespace TechFood.BackOffice.Infra.Persistence.Repositories;
 
 public class CategoryRepository(BackOfficeContext dbContext) : ICategoryRepository
 {

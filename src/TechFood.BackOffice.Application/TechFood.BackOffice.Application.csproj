@@ -19,10 +19,11 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.1.2" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.1.2" />
-    <PackageReference Include="TechFood.Shared.Application" Version="0.2.4-rc" />
-    <PackageReference Include="TechFood.Shared.Domain" Version="0.2.4-rc" />
+    <PackageReference Include="TechFood.Shared.Application" Version="0.2.5-rc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TechFood.BackOffice.Application.Tests" />
   </ItemGroup>
 
 	<ItemGroup>

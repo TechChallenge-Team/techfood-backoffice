@@ -1,7 +1,7 @@
 using Microsoft.Extensions.FileProviders;
 using TechFood.BackOffice.Application;
-using TechFood.Infra;
-using TechFood.Infra.Persistence.Contexts;
+using TechFood.BackOffice.Infra;
+using TechFood.BackOffice.Infra.Persistence.Contexts;
 using TechFood.Shared.Presentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

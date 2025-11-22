@@ -25,10 +25,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="TechFood.Shared.Application" Version="0.2.4-rc" />
-    <PackageReference Include="TechFood.Shared.Domain" Version="0.2.4-rc" />
-    <PackageReference Include="TechFood.Shared.Infra" Version="0.2.4-rc" />
-    <PackageReference Include="TechFood.Shared.Presentation" Version="0.2.4-rc" />
+    <PackageReference Include="TechFood.Shared.Presentation" Version="0.2.5-rc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TechFood.BackOffice.Api.Tests" />
+    <InternalsVisibleTo Include="TechFood.BackOffice.Integration.Tests" />
   </ItemGroup>
 
   <ItemGroup>

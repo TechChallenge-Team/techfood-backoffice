@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 
-namespace TechFood.Infra
+namespace TechFood.BackOffice.Infra
 {
     public static class RequestPipeline
     {

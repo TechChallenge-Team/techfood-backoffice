@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDB.EntityFrameworkCore.Extensions;
 using TechFood.BackOffice.Domain.Entities;
 
-namespace TechFood.Infra.Persistence.Mappings;
+namespace TechFood.BackOffice.Infra.Persistence.Mappings;
 
 public class CustomerMap : IEntityTypeConfiguration<Customer>
 {

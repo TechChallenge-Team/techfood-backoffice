@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TechFood.BackOffice.Domain.ValueObjects;
 
-namespace TechFood.Infra.Persistence.ValueObjectMappings;
+namespace TechFood.BackOffice.Infra.Persistence.ValueObjectMappings;
 
 public static class PhoneMap
 {

@@ -7,13 +7,13 @@ using TechFood.BackOffice.Application.Common.Services.Interfaces;
 using TechFood.BackOffice.Application.Menu.Queries;
 using TechFood.BackOffice.Application.Products.Queries;
 using TechFood.BackOffice.Domain.Repositories;
-using TechFood.Infra.Persistence.Contexts;
-using TechFood.Infra.Persistence.ImageStorage;
-using TechFood.Infra.Persistence.Queries;
-using TechFood.Infra.Persistence.Repositories;
+using TechFood.BackOffice.Infra.Persistence.Contexts;
+using TechFood.BackOffice.Infra.Persistence.ImageStorage;
+using TechFood.BackOffice.Infra.Persistence.Queries;
+using TechFood.BackOffice.Infra.Persistence.Repositories;
 using TechFood.Shared.Infra.Extensions;
 
-namespace TechFood.Infra;
+namespace TechFood.BackOffice.Infra;
 
 public static class DependencyInjection
 {

@@ -7,9 +7,9 @@ using TechFood.BackOffice.Application.Categories.Dto;
 using TechFood.BackOffice.Application.Categories.Queries;
 using TechFood.BackOffice.Application.Common.Services.Interfaces;
 using TechFood.BackOffice.Domain.Entities;
-using TechFood.Infra.Persistence.Contexts;
+using TechFood.BackOffice.Infra.Persistence.Contexts;
 
-namespace TechFood.Infra.Persistence.Queries;
+namespace TechFood.BackOffice.Infra.Persistence.Queries;
 
 internal class CategoryQueryProvider(
     BackOfficeContext techFoodContext,

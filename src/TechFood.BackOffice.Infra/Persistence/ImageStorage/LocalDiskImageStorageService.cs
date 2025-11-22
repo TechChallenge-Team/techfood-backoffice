@@ -2,7 +2,7 @@ using System.IO;
 using System.Threading.Tasks;
 using TechFood.BackOffice.Application.Common.Services.Interfaces;
 
-namespace TechFood.Infra.Persistence.ImageStorage;
+namespace TechFood.BackOffice.Infra.Persistence.ImageStorage;
 
 internal class LocalDiskImageStorageService : IImageStorageService
 {

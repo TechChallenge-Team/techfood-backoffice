@@ -12,9 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="9.0.0" />
-    <PackageReference Include="TechFood.Shared.Application" Version="0.2.4-rc" />
-    <PackageReference Include="TechFood.Shared.Domain" Version="0.2.4-rc" />
+    <PackageReference Include="TechFood.Shared.Domain" Version="0.2.5-rc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TechFood.BackOffice.Application.Tests" />
+    <InternalsVisibleTo Include="TechFood.BackOffice.Domain.Tests" />
   </ItemGroup>
 
   <ItemGroup>
