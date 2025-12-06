@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using TechFood.Api.Controllers;
 using TechFood.BackOffice.Application.Categories.Commands.CreateCategory;
 using TechFood.BackOffice.Application.Categories.Commands.DeleteCategory;
+using TechFood.BackOffice.Application.Categories.Commands.UpdateCategory;
 using TechFood.BackOffice.Application.Categories.Dto;
 using TechFood.BackOffice.Application.Categories.Queries.ListCategories;
 using TechFood.BackOffice.Application.Categories.Queries.GetCategory;
@@ -155,5 +156,102 @@ public class CategoriesControllerTests
         _mediatorMock.Verify(m => m.Send(
             It.Is<DeleteCategoryCommand>(cmd => cmd.Id == categoryId), 
             default), Times.Once);
+    }
+
+    [Fact]
+    public async Task UpdateAsync_WithValidRequest_ShouldReturnOkResult()
+    {
+        // Arrange
+        var categoryId = Guid.NewGuid();
+        var mockFile = new Mock<IFormFile>();
+        mockFile.Setup(f => f.FileName).Returns("bebidas.png");
+        mockFile.Setup(f => f.ContentType).Returns("image/png");
+        mockFile.Setup(f => f.OpenReadStream()).Returns(new MemoryStream());
+        
+        var request = new UpdateCategoryRequest("Bebidas", mockFile.Object);
+        var categoryDto = new CategoryDto { Id = categoryId, Name = "Bebidas", ImageUrl = "bebidas.png" };
+
+        _mediatorMock.Setup(m => m.Send(It.IsAny<UpdateCategoryCommand>(), default))
+                     .ReturnsAsync(categoryDto);
+
+        // Act
+        var result = await _controller.UpdateAsync(categoryId, request);
+
+        // Assert
+        result.Should().BeOfType<OkObjectResult>();
+        var okResult = result as OkObjectResult;
+        okResult!.Value.Should().BeEquivalentTo(categoryDto);
+    }
+
+    [Fact]
+    public async Task UpdateAsync_WithNullFile_ShouldReturnOkResult()
+    {
+        // Arrange
+        var categoryId = Guid.NewGuid();
+        var request = new UpdateCategoryRequest("Sobremesas", null!);
+        var categoryDto = new CategoryDto { Id = categoryId, Name = "Sobremesas", ImageUrl = "sobremesas.png" };
+
+        _mediatorMock.Setup(m => m.Send(It.IsAny<UpdateCategoryCommand>(), default))
+                     .ReturnsAsync(categoryDto);
+
+        // Act
+        var result = await _controller.UpdateAsync(categoryId, request);
+
+        // Assert
+        result.Should().BeOfType<OkObjectResult>();
+        var okResult = result as OkObjectResult;
+        okResult!.Value.Should().BeEquivalentTo(categoryDto);
+    }
+
+    [Fact]
+    public async Task UpdateAsync_ShouldCallMediatorWithCorrectCommand()
+    {
+        // Arrange
+        var categoryId = Guid.NewGuid();
+        var mockFile = new Mock<IFormFile>();
+        mockFile.Setup(f => f.FileName).Returns("acompanhamentos.png");
+        mockFile.Setup(f => f.ContentType).Returns("image/png");
+        mockFile.Setup(f => f.OpenReadStream()).Returns(new MemoryStream());
+        
+        var request = new UpdateCategoryRequest("Acompanhamentos", mockFile.Object);
+        var categoryDto = new CategoryDto { Id = categoryId, Name = "Acompanhamentos", ImageUrl = "acompanhamentos.png" };
+
+        _mediatorMock.Setup(m => m.Send(It.IsAny<UpdateCategoryCommand>(), default))
+                     .ReturnsAsync(categoryDto);
+
+        // Act
+        await _controller.UpdateAsync(categoryId, request);
+
+        // Assert
+        _mediatorMock.Verify(m => m.Send(
+            It.Is<UpdateCategoryCommand>(cmd => 
+                cmd.Id == categoryId && 
+                cmd.Name == request.Name), 
+            default), Times.Once);
+    }
+
+    [Theory]
+    [InlineData("Lanches")]
+    [InlineData("Bebidas")]
+    [InlineData("Sobremesas")]
+    [InlineData("Acompanhamentos")]
+    public async Task UpdateAsync_WithDifferentCategoryNames_ShouldReturnOkResult(string categoryName)
+    {
+        // Arrange
+        var categoryId = Guid.NewGuid();
+        var request = new UpdateCategoryRequest(categoryName, null!);
+        var categoryDto = new CategoryDto { Id = categoryId, Name = categoryName, ImageUrl = $"{categoryName.ToLower()}.png" };
+
+        _mediatorMock.Setup(m => m.Send(It.IsAny<UpdateCategoryCommand>(), default))
+                     .ReturnsAsync(categoryDto);
+
+        // Act
+        var result = await _controller.UpdateAsync(categoryId, request);
+
+        // Assert
+        result.Should().BeOfType<OkObjectResult>();
+        var okResult = result as OkObjectResult;
+        var returnedDto = okResult!.Value as CategoryDto;
+        returnedDto!.Name.Should().Be(categoryName);
     }
 }
