@@ -1,0 +1,28 @@
+@rootUrl=http://localhost:49752/v1
+
+### Create Category
+POST {{rootUrl}}/categories
+Content-Type: application/json
+
+{
+    "name": "Category Test",
+    "imageFileName": "imageFileName"
+}
+
+### Get Category
+GET {{rootUrl}}/categories
+
+### Get Category by Id
+GET {{rootUrl}}/categories/33bfe6cb-9d51-4d96-b9ac-99c860deb938
+
+### Update Category
+PUT {{rootUrl}}/categories/33bfe6cb-9d51-4d96-b9ac-99c860deb938
+Content-Type: application/json
+
+{
+    "name": "Category Updated",
+    "imageFileName": "imageFileName Updated"
+}
+
+### Delete Category
+DELETE {{rootUrl}}/categories/33bfe6cb-9d51-4d96-b9ac-99c860deb938

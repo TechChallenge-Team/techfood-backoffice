@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="3.5.1" />
+    <PackageReference Include="MongoDB.EntityFrameworkCore" Version="9.0.3" />
+    <PackageReference Include="TechFood.Shared.Infra" Version="0.2.5-rc" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <InternalsVisibleTo Include="TechFood.BackOffice.Application.Tests" />
+    <InternalsVisibleTo Include="TechFood.BackOffice.Integration.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TechFood.BackOffice.Application\TechFood.BackOffice.Application.csproj" />
+    <ProjectReference Include="..\TechFood.BackOffice.Domain\TechFood.BackOffice.Domain.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

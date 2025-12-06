@@ -1,0 +1,54 @@
+services:
+  mongodb:
+    # Use the official MongoDB image
+    image: mongo:7.0
+
+    # Give the container a recognizable name
+    container_name: mongodb-local
+
+    # Map ports from the container to the host machine
+    ports:
+      # MongoDB default port
+      - "27017:27017"
+
+    # Environment variables for MongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: techfood.backoffice
+
+    # Volume for data persistence
+    volumes:
+      - mongodb_data:/data/db
+
+    # Restart policy ensures the container restarts automatically if it fails
+    restart: always
+
+  mongo-express:
+    # Use MongoDB web admin interface
+    image: mongo-express:latest
+
+    # Give the container a recognizable name
+    container_name: mongo-express
+
+    # Map ports from the container to the host machine
+    ports:
+      # Mongo Express web interface port
+      - "8081:8081"
+
+    # Environment variables to connect to MongoDB
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongodb:27017/
+      ME_CONFIG_BASICAUTH: false
+
+    # Depends on MongoDB service
+    depends_on:
+      - mongodb
+
+    # Restart policy ensures the container restarts automatically if it fails
+    restart: always
+
+volumes:
+  mongodb_data:

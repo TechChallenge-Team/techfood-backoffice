@@ -1,0 +1,30 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MongoDB.EntityFrameworkCore.Extensions;
+using TechFood.BackOffice.Domain.Entities;
+
+namespace TechFood.BackOffice.Infra.Persistence.Mappings;
+
+public class ProductMap : IEntityTypeConfiguration<Product>
+{
+    public void Configure(EntityTypeBuilder<Product> builder)
+    {
+        builder.ToCollection("products");
+
+        builder.Property(a => a.Name)
+            .HasMaxLength(255)
+            .IsRequired();
+
+        builder.Property(a => a.Description)
+            .HasMaxLength(255)
+            .IsRequired();
+
+        builder.HasOne<Category>()
+            .WithMany()
+            .IsRequired();
+
+        builder.Property(a => a.ImageFileName)
+            .HasMaxLength(50)
+            .IsRequired();
+    }
+}

@@ -1,0 +1,37 @@
+@rootUrl=http://localhost:49752/v1
+
+###POST Product
+POST {{rootUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "X-Burguer",
+  "description": "P�o, 1 Carne, queijo, bacon, salada, ketchup e maionese",
+  "categoryId": "ec2fb26d-99a4-4eab-aa5c-7dd18d88a025",
+  "imageFileName": "Teste",
+  "price": 15.25
+}
+
+###GET Product
+GET {{rootUrl}}/products
+
+###GET Product by id
+GET {{rootUrl}}/products/1c5a2a4e-2008-4f8b-9881-03a74976aedf
+
+###PUT Product
+PUT {{rootUrl}}/products/9a3b1122-dcc9-417f-844f-ceb2811f6938
+Content-Type: application/json
+
+{
+  "name": "Teste",
+  "description": "altera item",
+  "categoryId": "ec2fb26d-99a4-4eab-aa5c-7dd18d88a025",
+  "imageFileName": "AAAA.png",
+  "price": 0.92
+}
+
+###Delete Product by id
+DELETE {{rootUrl}}/products/5287caf3-0487-4874-991b-c8e113387d91
+
+###PATCH Product
+DELETE {{rootUrl}}/products/5287caf3-0487-4874-991b-c8e113387d91/outOfStock
