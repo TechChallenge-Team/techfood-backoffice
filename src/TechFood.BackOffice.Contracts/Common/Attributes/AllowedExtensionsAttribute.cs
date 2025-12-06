@@ -9,7 +9,7 @@ public class AllowedExtensionsAttribute : ValidationAttribute
 
     public AllowedExtensionsAttribute(params string[] extensions) => _extensions = extensions;
 
-    protected override ValidationResult? IsValid(object? value, ValidationContext context)
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
         if (value is not IFormFile file || file.Length == 0)
         {

@@ -13,9 +13,9 @@ public class CategoryRepository(BackOfficeContext dbContext) : ICategoryReposito
 {
     private readonly DbSet<Category> _categories = dbContext.Categories;
 
-    public async Task<Guid> AddAsync(Category entity)
+    public async Task<Guid> AddAsync(Category category)
     {
-        var result = await _categories.AddAsync(entity);
+        var result = await _categories.AddAsync(category);
 
         return result.Entity.Id;
     }

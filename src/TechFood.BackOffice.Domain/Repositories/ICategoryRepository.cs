@@ -11,7 +11,7 @@ public interface ICategoryRepository
 
     Task<IEnumerable<Category>> GetAllAsync();
 
-    Task<Guid> AddAsync(Category entity);
+    Task<Guid> AddAsync(Category category);
 
-    Task DeleteAsync(Category entity);
+    Task DeleteAsync(Category category);
 }
