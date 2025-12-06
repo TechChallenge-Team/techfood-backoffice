@@ -2,17 +2,17 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
+using TechFood.BackOffice.Application.Categories.Queries;
 using TechFood.BackOffice.Application.Common.Services.Interfaces;
 using TechFood.BackOffice.Application.Products.Queries;
-using TechFood.BackOffice.Application.Categories.Queries;
 using TechFood.BackOffice.Domain.Repositories;
 using TechFood.BackOffice.Infra.Persistence.Contexts;
-using TechFood.BackOffice.Infra.Persistence.Repositories;
 using TechFood.BackOffice.Infra.Persistence.Queries;
+using TechFood.BackOffice.Infra.Persistence.Repositories;
 using TechFood.Shared.Domain.UoW;
-using TechFood.Shared.Infra.Persistence.UoW;
-using Microsoft.Extensions.Options;
 using TechFood.Shared.Infra.Extensions;
+using TechFood.Shared.Infra.Persistence.UoW;
 
 namespace TechFood.BackOffice.Integration.Tests.Fixtures;
 
@@ -46,7 +46,6 @@ public class IntegrationTestFixture : IDisposable
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<ICustomerRepository, CustomerRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
 
         // Register query providers
         services.AddScoped<IProductQueryProvider, ProductQueryProvider>();

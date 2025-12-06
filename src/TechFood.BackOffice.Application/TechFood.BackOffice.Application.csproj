@@ -55,8 +55,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Authentication\Events\" />
-    <Folder Include="Authentication\Queries\" />
+    <Folder Include="Common\Data\" />
+    <Folder Include="Customers\Commands\" />
     <Folder Include="Products\Commands\" />
     <Folder Include="Products\Dto\" />
     <Folder Include="Products\Events\" />
