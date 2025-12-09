@@ -25,15 +25,12 @@ public static class DependencyInjection
             DbContext = (serviceProvider, dbOptions) =>
             {
                 var config = serviceProvider.GetRequiredService<IConfiguration>();
-                var mongoSection = config.GetSection("MongoDB");
+                var connectionString = config.GetConnectionString("DataBaseConection")!;
 
-                var connectionString = mongoSection.GetValue<string>("ConnectionString") ?? "mongodb://localhost:27017";
-                var databaseName = mongoSection.GetValue<string>("DatabaseName") ?? "techfood";
-                dbOptions.UseMongoDB(connectionString, databaseName);
+                dbOptions.UseMongoDB(connectionString);
             },
             ApplicationAssembly = typeof(BackOffice.Application.DependencyInjection).Assembly
         });
-
 
         //Data
         services.AddScoped<ICategoryRepository, CategoryRepository>();
