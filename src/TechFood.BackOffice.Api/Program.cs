@@ -30,7 +30,7 @@ var app = builder.Build();
         await dataContext.SeedDataAsync();
     }
 
-    app.UsePathBase("/api");
+    app.UsePathBase("/api/backoffice");
 
     app.UseForwardedHeaders();
 
