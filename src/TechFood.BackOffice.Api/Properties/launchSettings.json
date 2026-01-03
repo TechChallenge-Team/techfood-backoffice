@@ -3,7 +3,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:49752/swagger",
+      "launchUrl": "http://localhost:45004/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -11,11 +11,11 @@
     "TechFood.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:49752/swagger",
+      "launchUrl": "http://localhost:45004/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:49752;https://localhost:44313"
+      "applicationUrl": "http://localhost:45004;https://localhost:44313"
     },
     "Container (Dockerfile)": {
       "commandName": "Docker",
@@ -34,7 +34,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:49752",
+      "applicationUrl": "http://localhost:45004",
       "sslPort": 44313
     }
   }
