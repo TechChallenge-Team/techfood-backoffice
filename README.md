@@ -328,6 +328,10 @@ O banco será hospedado no **AWS RDS SQLServer** pelos seguintes motivos:
 
 “Optamos pelo **AWS RDS SQLServer** por se tratar de um banco de dados relacional totalmente gerenciado, com suporte a escalabilidade horizontal e vertical, alta disponibilidade via Multi-AZ e segurança integrada com IAM e KMS. Além disso, o **SQLServer** oferece recursos avançados de modelagem (constraints, índices, JSONB para dados semiestruturados) que suportam o crescimento do sistema da Techfood.”
 
+## 🧪 Testing
+<img width="1637" height="808" alt="image" src="https://github.com/user-attachments/assets/8cfce457-2c7c-4141-a216-f99c6b903720" />
+
+
 ## Members
 
 - [Elias Soares - RM 362904](https://github.com/eliassoaressouza)
